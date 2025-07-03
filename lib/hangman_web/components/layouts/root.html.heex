@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" class="[scrollbar-gutter:stable]">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content={get_csrf_token()} />
+    <.live_title default="Hangman" suffix=" · Phoenix Framework">
+      {assigns[:page_title]}
+    </.live_title>
+    <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
+    <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
+    </script>
+    <style>
+      #hangmanCanvas {
+            border: 4px solid black;
+            margin: 0 auto;
+            display: block;
+            background-color: #FFF9C4;
+        }
+        .letter-button.correct {
+            background-color: black !important;
+            color: white !important;
+            border: 3px solid black !important;
+        }
+        .letter-button.incorrect {
+            background-color: #FF5722 !important;
+            color: black !important;
+            border: 3px solid black !important;
+        }
+    </style>
+  </head>
+  <body class="bg-white">
+    {@inner_content}
+  </body>
+</html>
