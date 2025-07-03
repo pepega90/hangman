@@ -1,5 +1,7 @@
 # Hangman
 
+https://github.com/user-attachments/assets/cc486a0f-42bc-41ac-89e5-832f1cb70ebe
+
 To start your Phoenix server:
 
   * Run `mix setup` to install and setup dependencies
