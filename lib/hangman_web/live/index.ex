@@ -3,6 +3,7 @@ defmodule Kata do
 end
 
 defmodule HangmanWeb.Live.Index do
+  import HangmanWeb.Live.CustomComponent
   alias Kata
   use HangmanWeb, :live_view
 
@@ -35,9 +36,7 @@ defmodule HangmanWeb.Live.Index do
             <div class="mb-6">
               <h2 class="text-2xl font-bold mb-2 underline">HINT:</h2>
               
-              <%= if @selected do %>
-                <p id="hint" class="text-lg">{@selected.hint}</p>
-              <% end %>
+              <p :if={@selected} id="hint" class="text-lg">{@selected.hint}</p>
             </div>
             
             <div class="mb-6">
@@ -102,34 +101,8 @@ defmodule HangmanWeb.Live.Index do
       </div>
       
     <!-- Keyboard with brutalist style -->
-      <div class="bg-white rounded-none border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-6">
-        <h2 class="text-2xl font-bold mb-4 text-center underline">CHOOSE A LETTER:</h2>
-        
-        <div id="keyboard" class="grid grid-cols-7 gap-3">
-          <!-- Alphabet buttons will be generated here -->
-          <%= for v <- @letters do %>
-            <button
-              phx-click="key_click"
-              phx-value-key={v |> String.downcase()}
-              class={
-                if String.downcase(v) in @pressed,
-                  do:
-                    "letter-button correct bg-white hover:bg-black hover:text-white font-bold py-2 px-4 rounded-none border-4 border-black transition-all duration-200",
-                  else:
-                    if(String.downcase(v) in @salah,
-                      do:
-                        "letter-button incorrect bg-white hover:bg-black hover:text-white font-bold py-2 px-4 rounded-none border-4 border-black transition-all duration-200",
-                      else:
-                        "letter-button bg-white hover:bg-black hover:text-white font-bold py-2 px-4 rounded-none border-4 border-black transition-all duration-200"
-                    )
-              }
-            >
-              {v}
-            </button>
-          <% end %>
-        </div>
-      </div>
-      
+      <.keyboard letters={@letters} pressed={@pressed} salah={@salah} />
+      <!-- Keyboard with brutalist style -->
       <div class="text-center mt-8 text-gray-600">
         Made with ♥ by Aji Mustofa
       </div>
